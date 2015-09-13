@@ -2,7 +2,7 @@ FROM java:8-jre
 
 ENV WATCHLOG_HOME /data/Watchlog_Service
 
-RUN apt-get update -y &&/
+RUN apt-get update -y && /
     apt-get install git -y
 
 WORKDIR $WATCHLOG_HOME
