@@ -1,4 +1,4 @@
-FROM java:8-jre
+FROM java:8-jdk
 
 RUN apt-get update && apt-get install -y \
 	git
@@ -10,9 +10,9 @@ WORKDIR $WATCHLOG_HOME
 RUN 	mkdir --parents $WATCHLOG_HOME && \
 	git clone https://github.com/tobwiens/watchlog_service.git && \
 	chmod +x $WATCHLOG_HOME/watchlog_service/gradlew && \
+	cd $WATCHLOG_HOME/watchlog_service/ && \
 	$WATCHLOG_HOME/watchlog_service/gradlew shadowJar && \
-	mv watchlog_service/build/libs/*jar $WATCHLOG_HOME && \
-	rm -fr watchlog_service
+	mv $WATCHLOG_HOME/watchlog_service/build/libs/*jar $WATCHLOG_HOME && \
+	rm -fr $WATCHLOG_HOME/watchlog_service/
 
-#ENTRYPOINT ["java", "-jar", "$WATCHLOG_HOME/*jar"]
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["java", "-jar", "$WATCHLOG_HOME/*jar"]
