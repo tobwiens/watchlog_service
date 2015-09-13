@@ -1,4 +1,4 @@
-FROM java:jdk-1.8
+FROM java:8-jre
 
 ENV WATCHLOG_HOME /data/Watchlog_Service
 
